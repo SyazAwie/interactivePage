@@ -21,6 +21,8 @@
             --light: #f9f7fd;
             --dark: #1a0d3f;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --mobile-breakpoint: 768px;
+            --tablet-breakpoint: 992px;
         }
 
         body {
@@ -391,8 +393,13 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
             .login-container {
                 min-height: auto;
+                border-radius: 15px;
             }
             
             .logo {
@@ -406,15 +413,114 @@
             
             .tab {
                 border-bottom: 2px solid #eee;
+                padding: 12px 20px;
+                text-align: center;
             }
             
             .user-option {
                 min-width: 100px;
-                padding: 12px;
+                padding: 12px 8px;
             }
             
             .user-option i {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .form-control {
+                padding: 14px 16px;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 16px;
+                font-size: 1.1rem;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+            }
+            
+            .login-right {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            .login-container {
+                border-radius: 12px;
+            }
+            
+            .logo {
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 25px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .tab {
+                font-size: 1.1rem;
+                padding: 10px 15px;
+            }
+            
+            .user-option {
+                min-width: 80px;
+                padding: 10px 5px;
+            }
+            
+            .user-option i {
+                font-size: 1.5rem;
+            }
+            
+            .user-option span {
+                font-size: 0.9rem;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .login-right {
+                padding: 20px;
+            }
+            
+            #register-content h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .footer-text {
+                font-size: 0.9rem;
+                margin-top: 20px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .user-option {
+                min-width: 70px;
+                padding: 8px 3px;
+            }
+            
+            .user-option i {
+                font-size: 1.3rem;
+            }
+            
+            .user-option span {
+                font-size: 0.8rem;
+            }
+            
+            .form-control {
+                padding: 12px 14px;
+            }
+            
+            .btn {
+                padding: 14px;
             }
         }
     </style>
@@ -636,6 +742,7 @@
                 willClose: () => {
                     // Redirect to dashboard in a real app
                     // window.location.href = `${userType}-dashboard.html`;
+                    window.location.href = "sidebar.html";
                 }
             });
         });

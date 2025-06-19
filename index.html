@@ -709,56 +709,139 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
+        /* Extra Large Screens - TV or Large Projector */
+        @media (min-width: 1400px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 4.5rem;
             }
-            
-            .about-content {
-                flex-direction: column;
+
+            .hero p {
+                font-size: 1.6rem;
             }
-            
-            .about-image {
-                order: -1;
-                transform: translateX(0);
-                margin-bottom: 40px;
+
+            .section-title h2 {
+                font-size: 3.5rem;
             }
-            
-            .mv-container {
-                flex-direction: column;
+
+            .btn {
+                font-size: 1.3rem;
+                padding: 16px 40px;
             }
         }
 
-        @media (max-width: 768px) {
-            nav {
-                display: none;
-            }
-            
+        /* Large Laptop Screens */
+        @media (min-width: 992px) and (max-width: 1199px) {
             .hero h1 {
-                font-size: 2.3rem;
+                font-size: 3.5rem;
             }
-            
+
             .hero p {
-                font-size: 1.15rem;
+                font-size: 1.3rem;
             }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
+
             .section {
-                padding: 80px 0;
-            }
-            
-            .stat-number {
-                font-size: 2.8rem;
+                padding: 90px 0;
             }
         }
+
+        /* Tablet Portrait */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                transform: none;
+                margin-bottom: 30px;
+            }
+
+            .mv-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        /* Phones */
+        @media (max-width: 767px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 10px 25px;
+            }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .contact-info h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Very Small Phones (e.g. old Android/iPhone SE) */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 8px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title p {
+                font-size: 1rem;
+            }
+
+            .stat-text {
+                font-size: 1rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -898,55 +981,76 @@
     <section id="contact" class="section">
         <div class="container">
             <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Get in touch with UiTM for more information</p>
+            <h2>Contact Us</h2>
+            <p>Get in touch with UiTM Kuala Terengganu for more information</p>
             </div>
             <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>UiTM Contact Information</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Main Campus</h4>
-                            <p>Universiti Teknologi MARA (UiTM)<br>40450 Shah Alam<br>Selangor Darul Ehsan, Malaysia</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Phone</h4>
-                            <p>+603-5544 2000</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p>fyp-support@uitm.edu.my</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Office Hours</h4>
-                            <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
-                        </div>
-                    </div>
+            <div class="contact-info">
+                <h3>UiTM Kuala Terengganu Contact Information</h3>
+                <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
                 </div>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.317106307285!2d101.50305921475747!3d3.214112997642524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc57d4c1b0a3a7%3A0x6c4c40b8f0c6d1a1!2sUniversiti%20Teknologi%20MARA%20(UiTM)%20Shah%20Alam!5e0!3m2!1sen!2smy!4v1650982345678!5m2!1sen!2smy" allowfullscreen="" loading="lazy"></iframe>
+                <div class="contact-details">
+                    <h4>Main Campus</h4>
+                    <p>
+                    Universiti Teknologi MARA<br>
+                    Cawangan Terengganu<br>
+                    Kampus Kuala Terengganu<br>
+                    21080 Kuala Terengganu<br>
+                    Terengganu Darul Iman, Malaysia
+                    </p>
                 </div>
+                </div>
+                <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Phone</h4>
+                    <p>+60 9‑621 6600</p>
+                </div>
+                </div>
+                <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-fax"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Fax</h4>
+                    <p>+60 9‑621 6609</p>
+                </div>
+                </div>
+                <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Email</h4>
+                    <p>hasna663@uitm.edu.my</p>
+                </div>
+                </div>
+                <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-details">
+                    <h4>Office Hours</h4>
+                    <p>Monday – Friday: 8:00 AM – 5:00 PM</p>
+                </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12822.092361537363!2d103.1641544201764!3d5.2631599337111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b7bef3b0ba24a9%3A0xc32efb50bc0e5e31!2sUiTM%20Kampus%20Kuala%20Terengganu!5e0!3m2!1sen!2smy!4v1750310936520!5m2!1sen!2smy" 
+                    width="100%" height="450" style="border:0;" 
+                    allowfullscreen="" loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer>
