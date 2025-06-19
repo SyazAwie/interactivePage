@@ -30,6 +30,7 @@
         body {
             background-color: var(--light);
             color: var(--dark);
+            overflow-x: hidden;
         }
 
         /* ==== MAIN CONTENT STYLES ==== */
@@ -37,6 +38,7 @@
             padding: 30px;
             padding-top: calc(var(--topbar-height) + 30px);
             transition: var(--transition);
+            margin-left: var(--sidebar-width);
         }
 
         .page-title {
@@ -116,109 +118,7 @@
             padding-bottom: 10px;
             border-bottom: 2px solid var(--accent);
         }
-    </style>
-</head>
-<body>
-    <!-- Topbar will be inserted here -->
-    <div id="topbar"></div>
-    
-    <!-- Sidebar will be inserted here -->
-    <div id="sidebar"></div>
-    
-    <!-- Main Content -->
-    <div class="main-content">
-        <h1 class="page-title">
-            <i class="fas fa-home"></i>
-            Dashboard
-        </h1>
-        
-        <div class="dashboard-grid">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <div class="card-title">Current Project</div>
-                    <div class="card-icon">
-                        <i class="fas fa-project-diagram"></i>
-                    </div>
-                </div>
-                <div class="card-value">Smart Campus System</div>
-                <div class="card-subtitle">Phase 2: Implementation</div>
-                <div class="card-footer">
-                    <i class="fas fa-check-circle"></i>
-                    On schedule
-                </div>
-            </div>
-            
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <div class="card-title">Days to Deadline</div>
-                    <div class="card-icon">
-                        <i class="fas fa-calendar-day"></i>
-                    </div>
-                </div>
-                <div class="card-value">23</div>
-                <div class="card-subtitle">Progress Report Submission</div>
-                <div class="card-footer">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Due: Dec 15, 2023
-                </div>
-            </div>
-            
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <div class="card-title">Unread Messages</div>
-                    <div class="card-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                </div>
-                <div class="card-value">5</div>
-                <div class="card-subtitle">From Supervisor & Examiner</div>
-                <div class="card-footer">
-                    <i class="fas fa-clock"></i>
-                    2 require response
-                </div>
-            </div>
-        </div>
-        
-        <h2 class="section-title">
-            <i class="fas fa-tasks"></i>
-            Recent Activities
-        </h2>
-        
-        <div class="dashboard-card">
-            <div class="activity-item">
-                <div class="activity-icon">
-                    <i class="fas fa-file-upload"></i>
-                </div>
-                <div class="activity-content">
-                    <div class="activity-text">You submitted Chapter 2 Literature Review</div>
-                    <div class="activity-time">Today, 10:30 AM</div>
-                </div>
-            </div>
-            
-            <div class="activity-item">
-                <div class="activity-icon">
-                    <i class="fas fa-comment-dots"></i>
-                </div>
-                <div class="activity-content">
-                    <div class="activity-text">Dr. Johnson provided feedback on your proposal</div>
-                    <div class="activity-time">Yesterday, 3:45 PM</div>
-                </div>
-            </div>
-            
-            <div class="activity-item">
-                <div class="activity-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div class="activity-content">
-                    <div class="activity-text">Project milestone completed: System Architecture</div>
-                    <div class="activity-time">Dec 1, 2023</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Component Styles -->
-    <style id="component-styles">
         /* ==== SIDEBAR STYLES ==== */
         #sidebar {
             width: var(--sidebar-width);
@@ -230,6 +130,8 @@
             z-index: 1000;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
             overflow-y: auto;
+            left: 0;
+            top: 0;
         }
 
         #sidebar.collapsed {
@@ -387,6 +289,25 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* Add this to your existing CSS */
+        .sidebar-menu .menu-item#logoutBtn {
+            margin-top: auto; /* Pushes logout to bottom */
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-menu .menu-item#logoutBtn:hover {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff6b6b;
+        }
+
+        .sidebar-menu .menu-item#logoutBtn:hover::before {
+            background: #ff6b6b;
+        }
+
+        .sidebar-menu .menu-item#logoutBtn .menu-icon {
+            color: #ff6b6b;
+        }
+
         .divider {
             height: 1px;
             background: rgba(255, 255, 255, 0.1);
@@ -407,10 +328,6 @@
             right: 0;
             z-index: 999;
             transition: var(--transition);
-        }
-
-        #sidebar.collapsed ~ .main-content #topbar {
-            left: var(--sidebar-collapsed);
         }
 
         .search-container {
@@ -600,7 +517,127 @@
             color: var(--primary);
         }
 
+        /* Topbar container styles */
+        .topbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        /* Mobile toggle button */
+        .mobile-toggle {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Search container */
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        /* Notification button */
+        .notification-btn {
+            position: relative;
+            cursor: pointer;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+
+        /* Profile section */
+        .topbar-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .topbar-left {
+                gap: 10px;
+            }
+            
+            .search-container {
+                max-width: 200px;
+            }
+            
+            .topbar-right {
+                gap: 15px;
+            }
+            
+            .topbar-name {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .search-container {
+                max-width: 150px;
+            }
+            
+            .mobile-toggle {
+                margin-right: 5px;
+            }
+        }
+
+        /* ==== OVERLAY STYLES ==== */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* ==== RESPONSIVE STYLES ==== */
+        @media (max-width: 1200px) {
+            #sidebar {
+                transform: translateX(0);
+            }
+            
+            #sidebar.collapsed {
+                width: var(--sidebar-collapsed);
+            }
+            
+            .main-content, #topbar {
+                margin-left: var(--sidebar-width);
+            }
+            
+            #sidebar.collapsed ~ .main-content,
+            #sidebar.collapsed ~ #topbar {
+                margin-left: var(--sidebar-collapsed);
+            }
+        }
+
         @media (max-width: 992px) {
             #sidebar {
                 transform: translateX(-100%);
@@ -620,8 +657,7 @@
                 transform: translateX(0);
             }
             
-            #topbar, .main-content {
-                left: 0 !important;
+            .main-content, #topbar {
                 margin-left: 0 !important;
             }
             
@@ -643,70 +679,208 @@
                 width: 300px;
                 right: -20px;
             }
+            
+            .main-content {
+                padding: 20px;
+                padding-top: calc(var(--topbar-height) + 20px);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #topbar {
+                padding: 0 15px;
+            }
+            
+            .search-container {
+                max-width: 150px;
+            }
+            
+            .notification-dropdown {
+                width: 280px;
+                right: -50px;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
         }
     </style>
+</head>
+<body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <!-- Topbar will be inserted here -->
+    <div id="topbar"></div>
+    
+    <!-- Sidebar will be inserted here -->
+    <div id="sidebar"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="page-title">
+            <i class="fas fa-home"></i>
+            Dashboard
+        </h1>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-title">Current Project</div>
+                    <div class="card-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                </div>
+                <div class="card-value">Smart Campus System</div>
+                <div class="card-subtitle">Phase 2: Implementation</div>
+                <div class="card-footer">
+                    <i class="fas fa-check-circle"></i>
+                    On schedule
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-title">Days to Deadline</div>
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                </div>
+                <div class="card-value">23</div>
+                <div class="card-subtitle">Progress Report Submission</div>
+                <div class="card-footer">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Due: Dec 15, 2023
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-title">Unread Messages</div>
+                    <div class="card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="card-value">5</div>
+                <div class="card-subtitle">From Supervisor & Examiner</div>
+                <div class="card-footer">
+                    <i class="fas fa-clock"></i>
+                    2 require response
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i>
+            Recent Activities
+        </h2>
+        
+        <div class="dashboard-card">
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-file-upload"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">You submitted Chapter 2 Literature Review</div>
+                    <div class="activity-time">Today, 10:30 AM</div>
+                </div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">Dr. Johnson provided feedback on your proposal</div>
+                    <div class="activity-time">Yesterday, 3:45 PM</div>
+                </div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">Project milestone completed: System Architecture</div>
+                    <div class="activity-time">Dec 1, 2023</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Fetch and insert components
         document.addEventListener('DOMContentLoaded', function() {
             // Insert topbar
             document.getElementById('topbar').innerHTML = `
-                <div class="mobile-toggle" id="mobileToggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                
-                <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" placeholder="Search...">
-                </div>
-                
-                <div class="topbar-right">
-                    <div class="notification-btn" id="notificationBtn">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-count">3</span>
+                <div class="topbar-container">
+                    <div class="topbar-left">
+                        <div class="mobile-toggle" id="mobileToggle">
+                            <i class="fas fa-bars"></i>
+                        </div>
                         
-                        <div class="notification-dropdown" id="notificationDropdown">
-                            <div class="notification-header">
-                                <div class="notification-title">Notifications</div>
-                                <div class="mark-read">Mark all as read</div>
-                            </div>
-                            <div class="notification-list">
-                                <div class="notification-item unread">
-                                    <div class="notification-icon">
-                                        <i class="fas fa-check-circle"></i>
-                                    </div>
-                                    <div class="notification-content">
-                                        <div class="notification-text">Your project proposal has been approved</div>
-                                        <div class="notification-time">2 hours ago</div>
-                                    </div>
-                                </div>
-                                <div class="notification-item unread">
-                                    <div class="notification-icon">
-                                        <i class="fas fa-exclamation-circle"></i>
-                                    </div>
-                                    <div class="notification-content">
-                                        <div class="notification-text">Deadline approaching: Progress Report due</div>
-                                        <div class="notification-time">5 hours ago</div>
-                                    </div>
-                                </div>
-                                <div class="notification-item">
-                                    <div class="notification-icon">
-                                        <i class="fas fa-comment"></i>
-                                    </div>
-                                    <div class="notification-content">
-                                        <div class="notification-text">Dr. Johnson commented on your document</div>
-                                        <div class="notification-time">Yesterday</div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="search-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" placeholder="Search...">
                         </div>
                     </div>
                     
-                    <div class="topbar-profile">
-                        <div class="topbar-img">
-                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=b399d4&color=4b2e83" alt="Profile">
+                    <div class="topbar-right">
+                        <div class="notification-btn" id="notificationBtn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                            
+                            <div class="notification-dropdown" id="notificationDropdown">
+                                <div class="notification-header">
+                                    <div class="notification-title">Notifications</div>
+                                    <div class="mark-read">Mark all as read</div>
+                                </div>
+                                <div class="notification-list">
+                                    <div class="notification-item unread">
+                                        <div class="notification-icon">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <div class="notification-text">Your project proposal has been approved</div>
+                                            <div class="notification-time">2 hours ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="notification-item unread">
+                                        <div class="notification-icon">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <div class="notification-text">Deadline approaching: Progress Report due</div>
+                                            <div class="notification-time">5 hours ago</div>
+                                        </div>
+                                    </div>
+                                    <div class="notification-item">
+                                        <div class="notification-icon">
+                                            <i class="fas fa-comment"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <div class="notification-text">Dr. Johnson commented on your document</div>
+                                            <div class="notification-time">Yesterday</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="topbar-name">John Doe</div>
+                        
+                        <div class="topbar-profile">
+                            <div class="topbar-img">
+                                <img src="https://ui-avatars.com/api/?name=John+Doe&background=b399d4&color=4b2e83" alt="Profile">
+                            </div>
+                            <div class="topbar-name">John Doe</div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -765,11 +939,13 @@
                         <div class="menu-icon"><i class="fas fa-question-circle"></i></div>
                         <div class="menu-text">Help & Support</div>
                     </a>
-                </div>
-                
-                <div class="logout-btn" id="logoutBtn">
-                    <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
-                    <div class="menu-text">Logout</div>
+                    
+                    <div class="divider"></div>
+                    
+                    <a href="#" class="menu-item" id="logoutBtn">
+                        <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <div class="menu-text">Logout</div>
+                    </a>
                 </div>
             `;
             
@@ -778,12 +954,36 @@
         });
         
         function initComponents() {
-            // Toggle sidebar collapse
-            const toggleSidebar = document.getElementById('toggleSidebar');
             const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const toggleSidebar = document.getElementById('toggleSidebar');
+            const mobileToggle = document.getElementById('mobileToggle');
+            const notificationBtn = document.getElementById('notificationBtn');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const markRead = document.querySelector('.mark-read');
+            const unreadItems = document.querySelectorAll('.notification-item.unread');
+            const notificationCount = document.querySelector('.notification-count');
             
+            // Check screen size and set initial sidebar state
+            function checkScreenSize() {
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('collapsed');
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                } else {
+                    sidebar.classList.add('collapsed');
+                    sidebarOverlay.classList.remove('active');
+                }
+            }
+            
+            // Initial check
+            checkScreenSize();
+            
+            // Toggle sidebar collapse/expand
             toggleSidebar.addEventListener('click', () => {
                 sidebar.classList.toggle('collapsed');
+                
                 // Rotate the icon
                 if (sidebar.classList.contains('collapsed')) {
                     toggleSidebar.innerHTML = '<i class="fas fa-chevron-right"></i>';
@@ -793,15 +993,18 @@
             });
             
             // Mobile toggle for sidebar
-            const mobileToggle = document.getElementById('mobileToggle');
             mobileToggle.addEventListener('click', () => {
                 sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+            
+            // Close sidebar when clicking overlay
+            sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
             });
             
             // Notification dropdown toggle
-            const notificationBtn = document.getElementById('notificationBtn');
-            const notificationDropdown = document.getElementById('notificationDropdown');
-            
             notificationBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 notificationDropdown.classList.toggle('active');
@@ -815,7 +1018,6 @@
             });
             
             // Logout functionality with SweetAlert
-            const logoutBtn = document.getElementById('logoutBtn');
             logoutBtn.addEventListener('click', () => {
                 Swal.fire({
                     title: 'Logout Confirmation',
@@ -844,10 +1046,6 @@
             });
             
             // Mark notifications as read
-            const markRead = document.querySelector('.mark-read');
-            const unreadItems = document.querySelectorAll('.notification-item.unread');
-            const notificationCount = document.querySelector('.notification-count');
-            
             if (markRead) {
                 markRead.addEventListener('click', () => {
                     unreadItems.forEach(item => {
@@ -857,22 +1055,22 @@
                 });
             }
             
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth < 992) {
-                    if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
-                        sidebar.classList.remove('active');
-                    }
-                }
-            });
-            
             // Adjust main content position based on sidebar state
             function adjustMainContent() {
                 const mainContent = document.querySelector('.main-content');
-                if (sidebar.classList.contains('collapsed')) {
-                    mainContent.style.marginLeft = '70px';
+                const topbar = document.getElementById('topbar');
+                
+                if (window.innerWidth > 992) {
+                    if (sidebar.classList.contains('collapsed')) {
+                        mainContent.style.marginLeft = '70px';
+                        topbar.style.left = '70px';
+                    } else {
+                        mainContent.style.marginLeft = '250px';
+                        topbar.style.left = '250px';
+                    }
                 } else {
-                    mainContent.style.marginLeft = '250px';
+                    mainContent.style.marginLeft = '0';
+                    topbar.style.left = '0';
                 }
             }
             
@@ -882,6 +1080,12 @@
             // Watch for sidebar changes
             const observer = new MutationObserver(adjustMainContent);
             observer.observe(sidebar, { attributes: true });
+            
+            // Watch for window resize
+            window.addEventListener('resize', () => {
+                checkScreenSize();
+                adjustMainContent();
+            });
         }
     </script>
 </body>
