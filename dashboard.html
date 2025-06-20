@@ -726,6 +726,94 @@
     
     <!-- Main Content -->
     <div class="main-content">
+        <h1 class="page-title">
+            <i class="fas fa-home"></i>
+            Dashboard
+        </h1>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-title">Current Project</div>
+                    <div class="card-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                </div>
+                <div class="card-value">Smart Campus System</div>
+                <div class="card-subtitle">Phase 2: Implementation</div>
+                <div class="card-footer">
+                    <i class="fas fa-check-circle"></i>
+                    On schedule
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-title">Days to Deadline</div>
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                </div>
+                <div class="card-value">23</div>
+                <div class="card-subtitle">Progress Report Submission</div>
+                <div class="card-footer">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Due: Dec 15, 2023
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-title">Unread Messages</div>
+                    <div class="card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <div class="card-value">5</div>
+                <div class="card-subtitle">From Supervisor & Examiner</div>
+                <div class="card-footer">
+                    <i class="fas fa-clock"></i>
+                    2 require response
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">
+            <i class="fas fa-tasks"></i>
+            Recent Activities
+        </h2>
+        
+        <div class="dashboard-card">
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-file-upload"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">You submitted Chapter 2 Literature Review</div>
+                    <div class="activity-time">Today, 10:30 AM</div>
+                </div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">Dr. Johnson provided feedback on your proposal</div>
+                    <div class="activity-time">Yesterday, 3:45 PM</div>
+                </div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">Project milestone completed: System Architecture</div>
+                    <div class="activity-time">Dec 1, 2023</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -733,7 +821,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Insert topbar
             document.getElementById('topbar').innerHTML = `
-               <div class="topbar-container">
+                <div class="topbar-container">
                     <div class="topbar-left">
                         <div class="mobile-toggle" id="mobileToggle">
                             <i class="fas fa-bars"></i>
@@ -789,10 +877,9 @@
                         
                         <div class="topbar-profile">
                             <div class="topbar-img">
-                                <img src="DownloadAvatar?filename=<%= userAvatar != null ? userAvatar : "default.png" %>" 
-                                    alt="Profile" style="width:35px; height:35px; border-radius:50%; object-fit:cover;">
+                                <img src="https://ui-avatars.com/api/?name=John+Doe&background=b399d4&color=4b2e83" alt="Profile">
                             </div>
-                            <div class="topbar-name"><%= user.getName() %></div>
+                            <div class="topbar-name">John Doe</div>
                         </div>
                     </div>
                 </div>
@@ -800,158 +887,62 @@
             
             // Insert sidebar
             document.getElementById('sidebar').innerHTML = `
-            <div class="toggle-btn" id="toggleSidebar">
+                <div class="toggle-btn" id="toggleSidebar">
                     <i class="fas fa-chevron-left"></i>
                 </div>
-
+                
                 <div class="sidebar-header">
                     <div class="user-profile">
                         <div class="profile-img">
-                            <img src="https://ui-avatars.com/api/?name=<%= user.getName() %>&background=b399d4&color=4b2e83" alt="Profile">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=b399d4&color=4b2e83" alt="Profile">
                         </div>
                         <div class="user-info">
-                            <div class="user-name"><%= user.getName() %></div>
-                            <div class="user-role"><%= displayRole %></div>
+                            <div class="user-name">John Doe</div>
+                            <div class="user-role">Student</div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="sidebar-menu">
-                    <!-- Dashboard - Common to all roles -->
-                    <a href="Dashboard.jsp" class="menu-item <%= request.getRequestURI().endsWith("Dashboard.jsp") ? "active" : "" %>">
+                    <a href="dashboard.html" class="menu-item active">
                         <div class="menu-icon"><i class="fas fa-home"></i></div>
                         <div class="menu-text">Dashboard</div>
                     </a>
-                    
-                    <!-- Supervisor Menu -->
-                    <% if ("supervisor".equals(userRole)) { %>
-                        <a href="ProfileServlet" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-user"></i></div>
-                            <div class="menu-text">Profile</div>
-                        </a>
-
-                        <a href="SupervisorStudent.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-user-graduate"></i></div>
-                            <div class="menu-text">Students</div>
-                        </a>
-                        
-                        <a href="Form.jsp" class="menu-item <%= request.getRequestURI().toLowerCase().endsWith("form.jsp") ? "active" : "" %>">
-                            <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
-                            <div class="menu-text">Forms</div>
-                        </a>
-                        
-                        <div class="menu-dropdown">
-                            <div class="menu-item parent-item">
-                                <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
-                                <div class="menu-text">Review</div>
-                                <div class="menu-arrow">&#9662;</div>
-                            </div>
-                            <div class="submenu">
-                                <a href="Plagiarism.jsp" class="submenu-item">Form</a>
-                                <a href="#" class="submenu-item">Plagiarism</a>
-                            </div>
-                        </div>
-                        
-                        <a href="#" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-folder-open"></i></div>
-                            <div class="menu-text">Past Project</div>
-                        </a>
-                    <% } %>
-                    
-                    <!-- Student Menu -->
-                    <% if ("student".equals(userRole)) { %>
-                        <a href="ProfileServlet" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-user"></i></div>
-                            <div class="menu-text">Profile</div>
-                        </a>
-
-                        <a href="ProposalIdea.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-lightbulb"></i></div>
-                            <div class="menu-text">Proposal Idea</div>
-                        </a>
-                        
-                        <a href="Form.jsp" class="menu-item <%= request.getRequestURI().toLowerCase().endsWith("form.jsp") ? "active" : "" %>">
-                            <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
-                            <div class="menu-text">Forms</div>
-                        </a>
-                        
-                        <a href="ProgressReportSubmission.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-tasks"></i></div>
-                            <div class="menu-text">Progress Report</div>
-                        </a>
-                        
-                        <a href="SubmitFinalReports.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-file-pdf"></i></div>
-                            <div class="menu-text">Final Reports</div>
-                        </a>
-                        
-                        <a href="Evaluation.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="menu-text">Evaluation</div>
-                        </a>
-                        
-                        <a href="Guideline.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-book"></i></div>
-                            <div class="menu-text">Guideline</div>
-                        </a>
-                        
-                        <a href="StudentConsultationLog.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-comments"></i></div>
-                            <div class="menu-text">Consultation Log</div>
-                        </a>
-                        
-                        <a href="PastReports.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-archive"></i></div>
-                            <div class="menu-text">Past Reports</div>
-                        </a>
-                    <% } %>
-                    
-                    <!-- Lecturer Menu -->
-                    <% if ("lecturer".equals(userRole)) { %>
-                        <a href="ProfileServlet" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-user"></i></div>
-                            <div class="menu-text">Profile</div>
-                        </a>
-
-                        <div class="menu-dropdown">
-                            <div class="menu-item parent-item">
-                                <div class="menu-icon"><i class="fas fa-user-graduate"></i></div>
-                                <div class="menu-text">Students</div>
-                                <div class="menu-arrow">&#9662;</div>
-                            </div>
-                            <div class="submenu">
-                                <a href="StudentList?course=1" class="submenu-item">CSP600</a>
-                                <a href="StudentList?course=2" class="submenu-item">CSP650</a>
-                            </div>
-                        </div>
-                        
-                        <div class="menu-dropdown">
-                            <div class="menu-item parent-item">
-                                <div class="menu-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                                <div class="menu-text">Supervisors</div>
-                                <div class="menu-arrow">&#9662;</div>
-                            </div>
-                            <div class="submenu">
-                                <a href="SupervisorList.jsp" class="submenu-item">Supervisors</a>
-                                <a href="ExaminerList.jsp" class="submenu-item">Examiners</a>
-                            </div>
-                        </div>
-                        
-                        <a href="Form.jsp" class="menu-item <%= request.getRequestURI().toLowerCase().endsWith("form.jsp") ? "active" : "" %>">
-                            <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
-                            <div class="menu-text">Forms</div>
-                        </a>
-                        
-                        <a href="LecturerReports.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-chart-bar"></i></div>
-                            <div class="menu-text">Report</div>
-                        </a>
-                    <% } %>
+                    <a href="ProgressReport.html" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-tasks"></i></div>
+                        <div class="menu-text">My Projects</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="menu-text">Schedule</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="menu-text">Documents</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-comments"></i></div>
+                        <div class="menu-text">Messages</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-user-friends"></i></div>
+                        <div class="menu-text">Supervisors</div>
+                    </a>
                     
                     <div class="divider"></div>
                     
-                    <!-- Logout - Common to all -->
-                    <a href="Login.jsp" class="menu-item">
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-cog"></i></div>
+                        <div class="menu-text">Settings</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-question-circle"></i></div>
+                        <div class="menu-text">Help & Support</div>
+                    </a>
+                    
+                    <div class="divider"></div>
+                    
+                    <a href="#" class="menu-item" id="logoutBtn">
                         <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
                         <div class="menu-text">Logout</div>
                     </a>
