@@ -165,6 +165,7 @@
             margin-right: 15px;
             flex-shrink: 0;
             overflow: hidden;
+            margin-left: -10px;
         }
 
         .profile-img img {
@@ -200,7 +201,7 @@
         .toggle-btn {
             position: absolute;
             top: 20px;
-            right: -15px;
+            left: 8px;
             width: 30px;
             height: 30px;
             background: white;
@@ -332,23 +333,33 @@
 
         .search-container {
             flex: 1;
-            max-width: 500px;
+            max-width: 400px; /* Reduced from 500px */
             position: relative;
+            margin-left: 20px;
         }
 
         .search-container input {
             width: 100%;
-            padding: 12px 20px 12px 45px;
-            border: 2px solid #eee;
-            border-radius: 30px;
-            font-size: 1rem;
+            padding: 8px 15px 8px 35px; /* Smaller padding (top/bottom: 8px, left: 35px for icon) */
+            border: 1px solid #eee;       /* Thinner border (2px → 1px) */
+            border-radius: 20px;         /* Slightly less rounded (30px → 20px) */
+            font-size: 0.9rem;           /* Smaller font (1rem → 0.9rem) */
             transition: var(--transition);
         }
 
+        .search-icon {
+            position: absolute;
+            left: 12px;                  /* Adjusted icon position (from ~20px) */
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;           /* Smaller icon (matches input text) */
+            color: #999;                 /* Subtle gray for the icon */
+        }
+
+        /* Focus state (unchanged but scaled down) */
         .search-container input:focus {
             border-color: var(--accent);
-            box-shadow: 0 5px 15px rgba(179, 153, 212, 0.2);
-            outline: none;
+            box-shadow: 0 3px 10px rgba(179, 153, 212, 0.2); /* Smaller shadow */
         }
 
         .search-icon {
@@ -478,11 +489,90 @@
             color: #777;
         }
 
-        .topbar-profile {
+       .topbar-profile {
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            padding: 8px 12px; /* Inner spacing */
+            border: 1px solid #c8c8c8; /* Light gray border */
+            border-radius: 30px; /* Rounded corners (pill shape) */
+            transition: all 0.3s ease; /* Smooth hover transition */
+            text-decoration: none; /* Remove underline if using <a> */
+            color: inherit; 
+            position: relative; 
+        }
+
+        /* Tooltip styling */
+        .profile-tooltip {
+            position: absolute;
+            bottom: -30px; /* Position below the element */
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+            pointer-events: none; /* Prevents tooltip from blocking clicks */
+        }
+
+        /* Tooltip arrow (optional) */
+        .profile-tooltip::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px 5px 0;
+            border-style: solid;
+            border-color: #333 transparent transparent;
+        }
+
+        /* Show tooltip on hover */
+        .topbar-profile:hover .profile-tooltip {
+            opacity: 1;
+        }
+
+        /* Existing hover effects */
+        .topbar-profile:hover {
+            background: #f5f5f5;
+            border-color: #b399d4;
+        }
+
+        .topbar-profile a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Hover effect */
+        .topbar-profile:hover {
+            background: #f5f5f5; /* Light gray background on hover */
+            border-color: #b399d4; /* Match your accent color (purple) */
+            box-shadow: 0 2px 8px rgba(179, 153, 212, 0.2); /* Subtle glow */
+        }
+
+        /* Optional: Style the image to match */
+        .topbar-img img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%; /* Circular image */
+            object-fit: cover;
+            border: 2px solid #f5f5f5; /* White-ish border around image */
+        }
+
+        /* Optional: Hover effect for the name */
+        .topbar-name {
+            font-weight: 500;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .topbar-profile:hover .topbar-name {
+            color: #4b2e83; /* Your purple color */
         }
 
         .topbar-img {
@@ -585,6 +675,10 @@
             }
             
             .topbar-name {
+                display: none;
+            }
+
+            .toggle-btn {
                 display: none;
             }
         }
@@ -822,6 +916,10 @@
             // Insert topbar
             document.getElementById('topbar').innerHTML = `
                 <div class="topbar-container">
+                    <div class="toggle-btn" id="toggleSidebar">
+                        <i class="fas fa-bars"></i>
+                    </div>
+
                     <div class="topbar-left">
                         <div class="mobile-toggle" id="mobileToggle">
                             <i class="fas fa-bars"></i>
@@ -875,21 +973,20 @@
                             </div>
                         </div>
                         
-                        <div class="topbar-profile">
+                        <a href="profile.html" class="topbar-profile">
                             <div class="topbar-img">
                                 <img src="https://ui-avatars.com/api/?name=John+Doe&background=b399d4&color=4b2e83" alt="Profile">
                             </div>
                             <div class="topbar-name">John Doe</div>
-                        </div>
+                            <span class="profile-tooltip">View Profile</span>
+                        </a>
                     </div>
                 </div>
             `;
             
             // Insert sidebar
             document.getElementById('sidebar').innerHTML = `
-                <div class="toggle-btn" id="toggleSidebar">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
+                
                 
                 <div class="sidebar-header">
                     <div class="user-profile">
@@ -910,7 +1007,7 @@
                     </a>
                     <a href="ProgressReport.html" class="menu-item">
                         <div class="menu-icon"><i class="fas fa-tasks"></i></div>
-                        <div class="menu-text">My Projects</div>
+                        <div class="menu-text">My Progress</div>
                     </a>
                     <a href="#" class="menu-item">
                         <div class="menu-icon"><i class="fas fa-calendar-alt"></i></div>
@@ -985,11 +1082,11 @@
                 sidebar.classList.toggle('collapsed');
                 
                 // Rotate the icon
-                if (sidebar.classList.contains('collapsed')) {
-                    toggleSidebar.innerHTML = '<i class="fas fa-chevron-right"></i>';
-                } else {
-                    toggleSidebar.innerHTML = '<i class="fas fa-chevron-left"></i>';
-                }
+               if (sidebar.classList.contains('collapsed')) {
+                toggleSidebar.innerHTML = '<i class="fas fa-bars"></i>';
+            } else {
+                toggleSidebar.innerHTML = '<i class="fas fa-times"></i>';
+            }
             });
             
             // Mobile toggle for sidebar

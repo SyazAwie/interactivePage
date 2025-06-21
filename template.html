@@ -50,75 +50,6 @@
             gap: 15px;
         }
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .dashboard-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(179, 153, 212, 0.2);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .card-value {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-
-        .card-footer {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #4CAF50;
-            font-size: 0.9rem;
-            margin-top: 15px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin: 30px 0 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent);
-        }
-
         /* ==== SIDEBAR STYLES ==== */
         #sidebar {
             width: var(--sidebar-width);
@@ -165,6 +96,7 @@
             margin-right: 15px;
             flex-shrink: 0;
             overflow: hidden;
+            margin-left: -10px;
         }
 
         .profile-img img {
@@ -200,7 +132,7 @@
         .toggle-btn {
             position: absolute;
             top: 20px;
-            right: -15px;
+            left: 8px;
             width: 30px;
             height: 30px;
             background: white;
@@ -289,9 +221,8 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Add this to your existing CSS */
         .sidebar-menu .menu-item#logoutBtn {
-            margin-top: auto; /* Pushes logout to bottom */
+            margin-top: auto;
             background: rgba(255, 255, 255, 0.05);
         }
 
@@ -332,31 +263,32 @@
 
         .search-container {
             flex: 1;
-            max-width: 500px;
+            max-width: 400px;
             position: relative;
+            margin-left: 20px;
         }
 
         .search-container input {
             width: 100%;
-            padding: 12px 20px 12px 45px;
-            border: 2px solid #eee;
-            border-radius: 30px;
-            font-size: 1rem;
+            padding: 8px 15px 8px 35px;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            font-size: 0.9rem;
             transition: var(--transition);
-        }
-
-        .search-container input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 5px 15px rgba(179, 153, 212, 0.2);
-            outline: none;
         }
 
         .search-icon {
             position: absolute;
-            left: 18px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: #777;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .search-container input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 3px 10px rgba(179, 153, 212, 0.2);
         }
 
         .topbar-right {
@@ -483,6 +415,82 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            padding: 8px 12px;
+            border: 1px solid #c8c8c8;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+
+        /* Tooltip styling */
+        .profile-tooltip {
+            position: absolute;
+            bottom: -30px; /* Position below the element */
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+            pointer-events: none; /* Prevents tooltip from blocking clicks */
+        }
+
+        /* Tooltip arrow (optional) */
+        .profile-tooltip::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px 5px 0;
+            border-style: solid;
+            border-color: #333 transparent transparent;
+        }
+
+        /* Show tooltip on hover */
+        .topbar-profile:hover .profile-tooltip {
+            opacity: 1;
+        }
+
+        /* Existing hover effects */
+        .topbar-profile:hover {
+            background: #f5f5f5;
+            border-color: #b399d4;
+        }
+
+        .topbar-profile a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .topbar-profile:hover {
+            background: #f5f5f5;
+            border-color: #b399d4;
+            box-shadow: 0 2px 8px rgba(179, 153, 212, 0.2);
+        }
+
+        .topbar-img img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f5f5f5;
+        }
+
+        .topbar-name {
+            font-weight: 500;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .topbar-profile:hover .topbar-name {
+            color: #4b2e83;
         }
 
         .topbar-img {
@@ -504,11 +512,6 @@
             object-fit: cover;
         }
 
-        .topbar-name {
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
         .mobile-toggle {
             display: none;
             margin-right: 20px;
@@ -517,7 +520,6 @@
             color: var(--primary);
         }
 
-        /* Topbar container styles */
         .topbar-container {
             display: flex;
             justify-content: space-between;
@@ -531,72 +533,6 @@
             align-items: center;
             gap: 20px;
             flex: 1;
-        }
-
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        /* Mobile toggle button */
-        .mobile-toggle {
-            margin-right: 10px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary);
-        }
-
-        /* Search container */
-        .search-container {
-            flex: 1;
-            max-width: 500px;
-            position: relative;
-        }
-
-        /* Notification button */
-        .notification-btn {
-            position: relative;
-            cursor: pointer;
-            color: var(--dark);
-            font-size: 1.3rem;
-        }
-
-        /* Profile section */
-        .topbar-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .topbar-left {
-                gap: 10px;
-            }
-            
-            .search-container {
-                max-width: 200px;
-            }
-            
-            .topbar-right {
-                gap: 15px;
-            }
-            
-            .topbar-name {
-                display: none;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .search-container {
-                max-width: 150px;
-            }
-            
-            .mobile-toggle {
-                margin-right: 5px;
-            }
         }
 
         /* ==== OVERLAY STYLES ==== */
@@ -664,6 +600,10 @@
             .mobile-toggle {
                 display: block;
             }
+
+            .toggle-btn {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -684,9 +624,9 @@
                 padding: 20px;
                 padding-top: calc(var(--topbar-height) + 20px);
             }
-            
-            .dashboard-grid {
-                grid-template-columns: 1fr;
+
+            .toggle-btn {
+                display: none;
             }
         }
 
@@ -707,10 +647,6 @@
             .page-title {
                 font-size: 1.5rem;
             }
-            
-            .section-title {
-                font-size: 1.3rem;
-            }
         }
     </style>
 </head>
@@ -718,14 +654,24 @@
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
-    <!-- Topbar will be inserted here -->
+    <!-- Topbar -->
     <div id="topbar"></div>
     
-    <!-- Sidebar will be inserted here -->
+    <!-- Sidebar -->
     <div id="sidebar"></div>
     
     <!-- Main Content -->
     <div class="main-content">
+        <h1 class="page-title">
+            <i class="fas fa-home"></i>
+            Dashboard
+        </h1>
+        
+        <!-- Your custom content will go here -->
+        <div class="content-placeholder">
+            <p>This is a clean template with only sidebar and topbar components.</p>
+            <p>Add your custom content below.</p>
+        </div>
     </div>
 
     <script>
@@ -733,7 +679,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Insert topbar
             document.getElementById('topbar').innerHTML = `
-               <div class="topbar-container">
+                <div class="topbar-container">
+                    <div class="toggle-btn" id="toggleSidebar">
+                        <i class="fas fa-bars"></i>
+                    </div>
+
                     <div class="topbar-left">
                         <div class="mobile-toggle" id="mobileToggle">
                             <i class="fas fa-bars"></i>
@@ -787,171 +737,71 @@
                             </div>
                         </div>
                         
-                        <div class="topbar-profile">
+                        <a href="profile.html" class="topbar-profile">
                             <div class="topbar-img">
-                                <img src="DownloadAvatar?filename=<%= userAvatar != null ? userAvatar : "default.png" %>" 
-                                    alt="Profile" style="width:35px; height:35px; border-radius:50%; object-fit:cover;">
+                                <img src="https://ui-avatars.com/api/?name=John+Doe&background=b399d4&color=4b2e83" alt="Profile">
                             </div>
-                            <div class="topbar-name"><%= user.getName() %></div>
-                        </div>
+                            <div class="topbar-name">John Doe</div>
+                            <span class="profile-tooltip">View Profile</span>
+                        </a>
                     </div>
                 </div>
             `;
             
             // Insert sidebar
             document.getElementById('sidebar').innerHTML = `
-            <div class="toggle-btn" id="toggleSidebar">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-
                 <div class="sidebar-header">
                     <div class="user-profile">
                         <div class="profile-img">
-                            <img src="https://ui-avatars.com/api/?name=<%= user.getName() %>&background=b399d4&color=4b2e83" alt="Profile">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=b399d4&color=4b2e83" alt="Profile">
                         </div>
                         <div class="user-info">
-                            <div class="user-name"><%= user.getName() %></div>
-                            <div class="user-role"><%= displayRole %></div>
+                            <div class="user-name">John Doe</div>
+                            <div class="user-role">Student</div>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="sidebar-menu">
-                    <!-- Dashboard - Common to all roles -->
-                    <a href="Dashboard.jsp" class="menu-item <%= request.getRequestURI().endsWith("Dashboard.jsp") ? "active" : "" %>">
+                    <a href="dashboard.html" class="menu-item active">
                         <div class="menu-icon"><i class="fas fa-home"></i></div>
                         <div class="menu-text">Dashboard</div>
                     </a>
-                    
-                    <!-- Supervisor Menu -->
-                    <% if ("supervisor".equals(userRole)) { %>
-                        <a href="ProfileServlet" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-user"></i></div>
-                            <div class="menu-text">Profile</div>
-                        </a>
-
-                        <a href="SupervisorStudent.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-user-graduate"></i></div>
-                            <div class="menu-text">Students</div>
-                        </a>
-                        
-                        <a href="Form.jsp" class="menu-item <%= request.getRequestURI().toLowerCase().endsWith("form.jsp") ? "active" : "" %>">
-                            <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
-                            <div class="menu-text">Forms</div>
-                        </a>
-                        
-                        <div class="menu-dropdown">
-                            <div class="menu-item parent-item">
-                                <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
-                                <div class="menu-text">Review</div>
-                                <div class="menu-arrow">&#9662;</div>
-                            </div>
-                            <div class="submenu">
-                                <a href="Plagiarism.jsp" class="submenu-item">Form</a>
-                                <a href="#" class="submenu-item">Plagiarism</a>
-                            </div>
-                        </div>
-                        
-                        <a href="#" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-folder-open"></i></div>
-                            <div class="menu-text">Past Project</div>
-                        </a>
-                    <% } %>
-                    
-                    <!-- Student Menu -->
-                    <% if ("student".equals(userRole)) { %>
-                        <a href="ProfileServlet" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-user"></i></div>
-                            <div class="menu-text">Profile</div>
-                        </a>
-
-                        <a href="ProposalIdea.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-lightbulb"></i></div>
-                            <div class="menu-text">Proposal Idea</div>
-                        </a>
-                        
-                        <a href="Form.jsp" class="menu-item <%= request.getRequestURI().toLowerCase().endsWith("form.jsp") ? "active" : "" %>">
-                            <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
-                            <div class="menu-text">Forms</div>
-                        </a>
-                        
-                        <a href="ProgressReportSubmission.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-tasks"></i></div>
-                            <div class="menu-text">Progress Report</div>
-                        </a>
-                        
-                        <a href="SubmitFinalReports.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-file-pdf"></i></div>
-                            <div class="menu-text">Final Reports</div>
-                        </a>
-                        
-                        <a href="Evaluation.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="menu-text">Evaluation</div>
-                        </a>
-                        
-                        <a href="Guideline.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-book"></i></div>
-                            <div class="menu-text">Guideline</div>
-                        </a>
-                        
-                        <a href="StudentConsultationLog.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-comments"></i></div>
-                            <div class="menu-text">Consultation Log</div>
-                        </a>
-                        
-                        <a href="PastReports.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-archive"></i></div>
-                            <div class="menu-text">Past Reports</div>
-                        </a>
-                    <% } %>
-                    
-                    <!-- Lecturer Menu -->
-                    <% if ("lecturer".equals(userRole)) { %>
-                        <a href="ProfileServlet" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-user"></i></div>
-                            <div class="menu-text">Profile</div>
-                        </a>
-
-                        <div class="menu-dropdown">
-                            <div class="menu-item parent-item">
-                                <div class="menu-icon"><i class="fas fa-user-graduate"></i></div>
-                                <div class="menu-text">Students</div>
-                                <div class="menu-arrow">&#9662;</div>
-                            </div>
-                            <div class="submenu">
-                                <a href="StudentList?course=1" class="submenu-item">CSP600</a>
-                                <a href="StudentList?course=2" class="submenu-item">CSP650</a>
-                            </div>
-                        </div>
-                        
-                        <div class="menu-dropdown">
-                            <div class="menu-item parent-item">
-                                <div class="menu-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                                <div class="menu-text">Supervisors</div>
-                                <div class="menu-arrow">&#9662;</div>
-                            </div>
-                            <div class="submenu">
-                                <a href="SupervisorList.jsp" class="submenu-item">Supervisors</a>
-                                <a href="ExaminerList.jsp" class="submenu-item">Examiners</a>
-                            </div>
-                        </div>
-                        
-                        <a href="Form.jsp" class="menu-item <%= request.getRequestURI().toLowerCase().endsWith("form.jsp") ? "active" : "" %>">
-                            <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
-                            <div class="menu-text">Forms</div>
-                        </a>
-                        
-                        <a href="LecturerReports.jsp" class="menu-item">
-                            <div class="menu-icon"><i class="fas fa-chart-bar"></i></div>
-                            <div class="menu-text">Report</div>
-                        </a>
-                    <% } %>
+                    <a href="ProgressReport.html" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-tasks"></i></div>
+                        <div class="menu-text">My Progress</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="menu-text">Schedule</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="menu-text">Documents</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-comments"></i></div>
+                        <div class="menu-text">Messages</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-user-friends"></i></div>
+                        <div class="menu-text">Supervisors</div>
+                    </a>
                     
                     <div class="divider"></div>
                     
-                    <!-- Logout - Common to all -->
-                    <a href="Login.jsp" class="menu-item">
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-cog"></i></div>
+                        <div class="menu-text">Settings</div>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <div class="menu-icon"><i class="fas fa-question-circle"></i></div>
+                        <div class="menu-text">Help & Support</div>
+                    </a>
+                    
+                    <div class="divider"></div>
+                    
+                    <a href="#" class="menu-item" id="logoutBtn">
                         <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
                         <div class="menu-text">Logout</div>
                     </a>
@@ -995,9 +845,9 @@
                 
                 // Rotate the icon
                 if (sidebar.classList.contains('collapsed')) {
-                    toggleSidebar.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    toggleSidebar.innerHTML = '<i class="fas fa-bars"></i>';
                 } else {
-                    toggleSidebar.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    toggleSidebar.innerHTML = '<i class="fas fa-times"></i>';
                 }
             });
             
